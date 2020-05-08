@@ -85,7 +85,7 @@ function continuePlaying(){
 	profit=$1
 	if [ $profit -gt 0 ]
 	then
-		main 
+		Gambler
 	else
 		echo "Thanks for playing!!!"
 	fi
