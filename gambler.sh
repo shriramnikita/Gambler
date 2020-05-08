@@ -7,7 +7,7 @@ bet=1
 stake=100
 days=20
 
-declare -A gameRecord
+declare -A gambler
 
 #uc2 check win or loss
 
@@ -37,14 +37,14 @@ do
 		fi
 	done
 	outCome=$(( $stake - 100 ))
-	gameRecord["Day_$day"]=$win" "$loss
+	gambler["Day_$day"]=$win" "$loss
 	done
 }
 
 Result
 
-for i in ${!gameRecord[@]}
+for i in ${!gambler[@]}
 do
-	echo "$i ${gameRecord[$i]}"
+	echo "$i ${gambler[$i]}"
 done | sort -k2 -n
 
