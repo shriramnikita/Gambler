@@ -43,8 +43,11 @@ do
 
 Result
 
-for i in ${!gambler[@]}
+#us5 calculate monthly loss or win
+for((j=1;j<=20;j++))
 do
-	echo "$i ${gambler[$i]}"
-done | sort -k2 -n
+	echo "Day_$j ${gambler[Day_$j]}"
+done 
+
+echo "Total profit" $( printf "%s\n" ${gambler[@]} | awk '{sum+=$0}END{print sum}')
 
