@@ -41,3 +41,55 @@ do
 	done
 }
 
+
+#us5 calculate monthly loss or win
+
+function dailyProfit()
+{
+for((j=1;j<=20;j++))
+do
+   echo "Day_$j ${gambler[Day_$j]}"
+done
+}
+
+
+#Uc6 calculate lucky unlucky day
+
+function luckiestUnlukiest()
+{
+   gambler[Day_0]=0
+
+   	for((j=1;j<=20;j++))
+   do
+		lastDay=$(( $j - 1 ))
+      gambler[Day_$j]=$(( ${gambler[Day_$j]} + ${gambler[Day_$lastDay]} ))
+		echo  "Day$j	"${gambler[Day_$j]}
+   done | sort -k2 -nr |awk 'NR==20{print "Unluckiest: " $0}AND NR==1{print "Luckiest: " $0}'
+}
+
+
+function Gambler()
+{
+Result
+dailyProfit
+luckiestUnlukiest
+
+profit=$( printf "%s\n" ${gambler[@]} | awk '{sum+=$0}END{print sum}')
+echo "Profit " $profit
+
+continuePlaying $profit 
+
+}
+
+#uc7 continue playing if won
+function continuePlaying(){
+	profit=$1
+	if [ $profit -gt 0 ]
+	then
+		Gambler
+	else
+		echo "Thanks for playing!!!"
+	fi
+}
+
+Gambler
