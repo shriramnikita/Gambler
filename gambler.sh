@@ -6,3 +6,13 @@ echo "******** Gambler Simulator *******"
 bet=1
 stake=100
 
+
+#uc2 check win or loss
+winLossResult=$((RANDOM%2))
+
+if [ $winLossResult -eq 1 ]
+then
+	echo "Win"
+else
+	echo "Loss"
+fi
